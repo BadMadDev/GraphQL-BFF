@@ -10,6 +10,10 @@ namespace Orders.Service.Mappings
 			return new()
 			{
 				Id = order.Id,
+				CustomerId = order.CustomerId,
+				Date = order.Date,
+				Tax = order.Tax,
+				Total = order.Total,
 				OrderEntries = order.OrderEntries.Select(e => e.ToModel()).ToList()
 			};
 		}
@@ -19,6 +23,8 @@ namespace Orders.Service.Mappings
 			return new()
 			{
 				Id = orderEntry.Id,
+				Name = orderEntry.Name,
+				Price = orderEntry.Price,
 				Description = orderEntry.Description
 			};
 		}

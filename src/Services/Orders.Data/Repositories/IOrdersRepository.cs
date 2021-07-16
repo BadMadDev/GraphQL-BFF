@@ -8,8 +8,9 @@ namespace Orders.Data.Repositories
 	public interface IOrdersRepository
 	{
 		Task<List<Order>> GetOrdersAsync();
+		Task<List<Order>> GetOrdersByCustomerIdAsync(Guid customerId);
 
-		Task<Order> GetByIdAsync(Guid customerId);
+		Task<Order> GetByIdAsync(Guid orderId);
 
 		Task<Order> AddEntryToOrderAsync(Guid id, OrderEntry entry);
 	}

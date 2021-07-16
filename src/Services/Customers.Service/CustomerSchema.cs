@@ -4,6 +4,7 @@ using Customers.Service.GraphTypes;
 using GraphQL;
 using GraphQL.Types;
 using System;
+using System.Linq;
 
 namespace Customers.Service
 {
@@ -14,7 +15,7 @@ namespace Customers.Service
 			Query = query;
 		}
 
-		public class QueryObject : ObjectGraphType<object>
+		public class QueryObject : ObjectGraphType
 		{
 			public QueryObject(ICustomersRepository repository)
 			{
@@ -31,6 +32,14 @@ namespace Customers.Service
 							Description = "The unique GUID of the customer."
 						}),
 					context => repository.GetByIdAsync(context.GetArgument("id", Guid.Empty)));
+
+				FieldAsync<ListGraphType<CustomerObject>>("customers", 
+					resolve: async context =>
+					{
+						var customers = await repository.GetCustomersAsync();
+
+						return customers.ToList();
+					});
 			}
 		}
 	}

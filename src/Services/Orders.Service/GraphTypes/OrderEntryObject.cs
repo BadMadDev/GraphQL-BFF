@@ -10,7 +10,9 @@ namespace Orders.Service.GraphTypes
 			Name = nameof(OrderEntry);
 			Description = "A entry of the order";
 
-			Field(r => r.Description).Description("Name of the reviewer");
+			Field(r => r.Name).Description("Name of the order entry");
+			Field(r => r.Description).Description("Description of the order entry");
+			Field(r => r.Price).Description("Price of the order entry");
 		}
 	}
 }

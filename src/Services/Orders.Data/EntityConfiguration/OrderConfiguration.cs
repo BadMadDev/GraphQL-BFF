@@ -15,6 +15,18 @@ namespace Orders.Data.EntityConfiguration
 			builder.Property(b => b.Id)
 				.IsRequired();
 
+			builder.Property(b => b.CustomerId)
+				.IsRequired();
+
+			builder.Property(b => b.Date)
+				.IsRequired();
+
+			builder.Property(b => b.Tax)
+				.IsRequired();
+
+			builder.Property(b => b.Total)
+				.IsRequired();
+
 			builder.HasMany(b => b.OrderEntries)
 				.WithOne(a => a.Order)
 				.HasForeignKey(a => a.OrderId);

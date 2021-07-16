@@ -107,3 +107,95 @@ Result:
   }
 }
 ```
+
+### Gateway
+- start customer service (Port: 5010)
+- start order service (Port: 5020)
+- start gateway (Port: 5000)
+- use query 
+
+```
+{
+  customers{
+    id
+    firstname,
+    lastname,
+    dayOfBirth
+    orders {
+      id,
+      date,
+      orderEntries {
+        name,
+        description,
+        price
+      }
+    }
+  }
+}
+```
+Result:
+```
+{
+  "data": {
+    "customers": [
+      {
+        "id": "00bcd523-dc9b-4d23-95ed-0cf10daace5f",
+        "firstname": "Hans",
+        "lastname": "Werner",
+        "dayOfBirth": "1970-11-04T00:00:00.000+01:00",
+        "orders": [
+          {
+            "id": "72d95bfd-1dac-4bc2-adc1-f28fd43777fd",
+            "date": "2021-07-16T22:37:21.333+02:00",
+            "orderEntries": [
+              {
+                "name": "Product 1",
+                "description": "Product Description 1",
+                "price": 120
+              },
+              {
+                "name": "Product 2",
+                "description": "Product Description 2",
+                "price": 150
+              },
+              {
+                "name": "Product 3",
+                "description": "Product Description 3",
+                "price": 165
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "8e1c119d-6043-4428-9e17-99beb7964a42",
+        "firstname": "Ben",
+        "lastname": "Schuster",
+        "dayOfBirth": "1973-05-06T00:00:00.000+02:00",
+        "orders": []
+      },
+      {
+        "id": "b0b0f29a-8224-48f2-aa9d-a9fcaf634579",
+        "firstname": "Alfred",
+        "lastname": "Müller",
+        "dayOfBirth": "1982-07-12T00:00:00.000+02:00",
+        "orders": []
+      },
+      {
+        "id": "883dde2a-c426-4024-9aef-f8a91af366f1",
+        "firstname": "Wolfgang",
+        "lastname": "Fleischer",
+        "dayOfBirth": "1967-07-21T00:00:00.000+02:00",
+        "orders": []
+      },
+      {
+        "id": "e39c76be-758c-48d3-84dc-673df528d559",
+        "firstname": "Max",
+        "lastname": "Mustermann",
+        "dayOfBirth": "1949-12-02T00:00:00.000+01:00",
+        "orders": []
+      }
+    ]
+  }
+}
+```

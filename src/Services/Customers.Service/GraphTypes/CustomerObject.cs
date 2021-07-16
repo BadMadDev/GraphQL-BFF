@@ -13,6 +13,7 @@ namespace Customers.Service.GraphTypes
 			Field(m => m.Id).Description("Identifier of the customer");
 			Field(m => m.Firstname).Description("Firstname of the customer");
 			Field(m => m.Lastname).Description("Lastname of the customer");
+			Field(m => m.DayOfBirth).Description("DayOfBirth of the customer");
 		}
 	}
 }

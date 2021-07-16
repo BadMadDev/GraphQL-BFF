@@ -24,6 +24,11 @@ namespace Orders.Data.Repositories
 			return _orderContext.Orders.Include("OrderEntries").AsNoTracking().ToListAsync();
 		}
 
+		public Task<List<Order>> GetOrdersByCustomerIdAsync(Guid customerId)
+		{
+			return _orderContext.Orders.Include("OrderEntries").Where(o => o.CustomerId == customerId).AsNoTracking().ToListAsync();
+		}
+
 		public Task<Order> GetByIdAsync(Guid orderId)
 		{
 			return _orderContext.Orders.Include("OrderEntries").FirstOrDefaultAsync(o => o.Id == orderId);

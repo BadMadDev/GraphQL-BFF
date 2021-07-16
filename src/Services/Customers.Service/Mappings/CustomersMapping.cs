@@ -10,7 +10,8 @@ namespace Customers.Service.Mappings
 			{
 				Id = customer.Id,
 				Firstname = customer.Firstname,
-				Lastname = customer.Lastname
+				Lastname = customer.Lastname,
+				DayOfBirth = customer.DayOfBirth
 			};
 		}
 	}

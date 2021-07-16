@@ -17,8 +17,9 @@ namespace Gateway
 			services.AddHttpClient("Orders", c => c.BaseAddress = new Uri("http://localhost:5020/graphql"));
 
 			services.AddGraphQLServer()
-				.AddRemoteSchema("Customers")
-				.AddRemoteSchema("Orders");
+				.AddRemoteSchema("Customers", ignoreRootTypes: false)
+				.AddRemoteSchema("Orders", ignoreRootTypes: false)
+				.AddTypeExtensionsFromFile("Stiching.graphql");
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

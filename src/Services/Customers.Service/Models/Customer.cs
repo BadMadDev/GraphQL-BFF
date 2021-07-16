@@ -8,5 +8,6 @@ namespace Customers.Service.Models
 
 		public string Firstname { get; set; }
 		public string Lastname { get; set; }
+		public DateTime DayOfBirth { get; set; }
 	}
 }

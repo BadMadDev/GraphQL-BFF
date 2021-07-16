@@ -22,6 +22,9 @@ namespace Customers.Data.EntityConfiguration
 			builder.Property(t => t.Lastname)
 				.IsRequired()
 				.HasMaxLength(64);
+
+			builder.Property(t => t.DayOfBirth)
+				.IsRequired();
 		}
 	}
 }
