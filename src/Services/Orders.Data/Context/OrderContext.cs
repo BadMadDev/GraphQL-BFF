@@ -17,11 +17,11 @@ namespace Orders.Data.Context
 		{
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderContext).Assembly);
 
-			var orderId = Guid.NewGuid();
+			var orderId = Guid.Parse("72d95bfd-1dac-4bc2-adc1-f28fd43777fd");
 
 			modelBuilder.Entity<OrderEntry>().HasData(
-				new OrderEntry {Id = Guid.NewGuid(), OrderId = orderId },
-				new OrderEntry {Id = Guid.NewGuid(), OrderId = orderId }
+				new OrderEntry {Id = Guid.NewGuid(), OrderId = orderId, Description = "Bechreibung 1"},
+				new OrderEntry {Id = Guid.NewGuid(), OrderId = orderId, Description = "Bechreibung 2" }
 			);
 
 			modelBuilder.Entity<Order>().HasData(

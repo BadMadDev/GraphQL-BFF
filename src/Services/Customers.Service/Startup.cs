@@ -1,12 +1,15 @@
 using Customers.Data.Context;
 using Customers.Data.Repositories;
 using Customers.Service.Services;
+using GraphQL.Server;
+using GraphQL.Server.Ui.Altair;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Customers.Service
@@ -31,6 +34,25 @@ namespace Customers.Service
 			services.AddEntityFrameworkInMemoryDatabase();
 			services.AddDbContext<CustomerContext>(context => { context.UseInMemoryDatabase("CustomersDatabase"); });
 
+			services.AddGraphQL(
+					(options, provider) =>
+					{
+						
+						var graphQLOptions = Configuration
+							.GetSection("GraphQL")
+							.Get<GraphQLOptions>();
+						options.ComplexityConfiguration = graphQLOptions.ComplexityConfiguration;
+						options.EnableMetrics = graphQLOptions.EnableMetrics;
+						
+						var logger = provider.GetRequiredService<ILogger<Startup>>();
+						options.UnhandledExceptionDelegate = ctx => logger.LogError("{Error} occurred", ctx.OriginalException.Message);
+					})
+				// Adds all graph types in the current assembly with a singleton lifetime.
+				.AddGraphTypes()
+				// Add GraphQL data loader to reduce the number of calls to our repository. https://graphql-dotnet.github.io/docs/guides/dataloader/
+				.AddDataLoader()
+				.AddSystemTextJson();
+
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customers.Service", Version = "v1" });
@@ -50,6 +72,8 @@ namespace Customers.Service
 			app.UseRouting();
 
 			app.UseAuthorization();
+
+			app.UseGraphQLAltair(new AltairOptions());
 
 			app.UseEndpoints(endpoints =>
 			{

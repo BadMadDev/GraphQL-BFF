@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Orders.Data.Models
+namespace Orders.Service.Models
 {
 	public class OrderEntry
 	{

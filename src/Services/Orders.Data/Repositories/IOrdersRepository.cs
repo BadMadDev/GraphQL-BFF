@@ -10,5 +10,7 @@ namespace Orders.Data.Repositories
 		Task<List<Order>> GetOrdersAsync();
 
 		Task<Order> GetByIdAsync(Guid customerId);
+
+		Task<Order> AddEntryToOrderAsync(Guid id, OrderEntry entry);
 	}
 }

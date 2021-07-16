@@ -10,9 +10,13 @@ namespace Orders.Data.EntityConfiguration
 		{
 			builder.ToTable("OrderEntry", "Orders");
 
-			builder.HasKey(b => b.Id);
+			builder.HasKey(e => e.Id);
 
-			builder.Property(b => b.Id)
+			builder.Property(e => e.Description)
+				.IsRequired()
+				.HasMaxLength(64);
+
+			builder.Property(e => e.Id)
 				.IsRequired();
 		}
 	}

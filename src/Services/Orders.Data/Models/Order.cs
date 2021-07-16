@@ -7,6 +7,11 @@ namespace Orders.Data.Models
 	{
 		public Guid Id { get; set; }
 
-		public IList<OrderEntry> OrderEntries { get; set; }
+		public IList<OrderEntry> OrderEntries { get; set; } = new List<OrderEntry>();
+
+		public void AddEntry(OrderEntry entry)
+		{
+			OrderEntries.Add(entry);
+		}
 	}
 }

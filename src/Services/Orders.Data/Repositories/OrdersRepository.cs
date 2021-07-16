@@ -3,6 +3,7 @@ using Orders.Data.Context;
 using Orders.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Orders.Data.Repositories
@@ -20,12 +21,20 @@ namespace Orders.Data.Repositories
 
 		public Task<List<Order>> GetOrdersAsync()
 		{
-			return _orderContext.Orders.AsNoTracking().ToListAsync();
+			return _orderContext.Orders.Include("OrderEntries").AsNoTracking().ToListAsync();
 		}
 
-		public Task<Order> GetByIdAsync(Guid customerId)
+		public Task<Order> GetByIdAsync(Guid orderId)
 		{
-			return Task.FromResult(new Order());
+			return _orderContext.Orders.Include("OrderEntries").FirstOrDefaultAsync(o => o.Id == orderId);
+		}
+
+		public async Task<Order> AddEntryToOrderAsync(Guid id, OrderEntry entry)
+		{
+			var movie = await _orderContext.Orders.Where(m => m.Id == id).FirstOrDefaultAsync();
+			movie.AddEntry(entry);
+			await _orderContext.SaveChangesAsync();
+			return movie;
 		}
 	}
 }
