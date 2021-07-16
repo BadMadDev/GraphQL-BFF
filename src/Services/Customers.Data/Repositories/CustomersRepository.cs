@@ -25,7 +25,7 @@ namespace Customers.Data.Repositories
 
 		public Task<Customer> GetByIdAsync(Guid customerId)
 		{
-			return Task.FromResult(new Customer());
+			return _customerContext.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
 		}
 	}
 }

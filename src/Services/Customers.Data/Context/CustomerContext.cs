@@ -16,8 +16,10 @@ namespace Customers.Data.Context
 		{
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(CustomerContext).Assembly);
 
+			var customerId = "{44C2D406-5BEB-43EF-A16E-4469FD369036}";
+
 			modelBuilder.Entity<Customer>().HasData(
-				new Customer {  Id = Guid.NewGuid(), Firstname = "Hans", Lastname = "Werner"},
+				new Customer {  Id = Guid.Parse(customerId), Firstname = "Hans", Lastname = "Werner"},
 				new Customer {  Id = Guid.NewGuid(), Firstname = "Max", Lastname = "Mustermann"}
 			);
 		}

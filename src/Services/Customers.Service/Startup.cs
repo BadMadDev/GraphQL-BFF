@@ -1,10 +1,14 @@
+using Autofac;
 using Customers.Data.Context;
 using Customers.Data.Repositories;
+using Customers.Service.GraphTypes;
 using Customers.Service.Services;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Altair;
+using GraphQL.SystemTextJson;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,9 +42,8 @@ namespace Customers.Service
 					(options, provider) =>
 					{
 						
-						var graphQLOptions = Configuration
-							.GetSection("GraphQL")
-							.Get<GraphQLOptions>();
+						var graphQLOptions = Configuration.GetSection("GraphQL").Get<GraphQLOptions>();
+
 						options.ComplexityConfiguration = graphQLOptions.ComplexityConfiguration;
 						options.EnableMetrics = graphQLOptions.EnableMetrics;
 						
@@ -59,6 +62,15 @@ namespace Customers.Service
 			});
 		}
 
+		public virtual void ConfigureContainer(ContainerBuilder builder)
+		{
+			builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();
+			builder.RegisterType<CustomersRepository>().As<ICustomersRepository>().InstancePerLifetimeScope();
+			builder.RegisterType<DocumentWriter>().AsImplementedInterfaces().SingleInstance();
+			builder.RegisterType<CustomerObject>().AsSelf().SingleInstance();
+			builder.RegisterType<CustomerSchema>().AsSelf().SingleInstance();
+		}
+
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
@@ -73,7 +85,8 @@ namespace Customers.Service
 
 			app.UseAuthorization();
 
-			app.UseGraphQLAltair(new AltairOptions());
+			app.UseGraphQL<CustomerSchema>();
+			app.UseGraphQLAltair(new AltairOptions() { }, "/ui/altair");
 
 			app.UseEndpoints(endpoints =>
 			{
