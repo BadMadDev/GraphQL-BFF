@@ -1,0 +1,16 @@
+ root = true
+
+# C# and Xaml files
+[*.{cs,xaml}]
+
+#### Core EditorConfig Options ####
+
+# Indentation and spacing
+
+# Bei Tab macht indent_size wenig Sinn.
+# indent_size          = 4
+indent_style         = tab
+
+# New line preferences
+end_of_line          = crlf
+insert_final_newline = false
