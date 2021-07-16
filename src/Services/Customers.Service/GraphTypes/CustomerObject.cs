@@ -8,7 +8,7 @@ namespace Customers.Service.GraphTypes
 		public CustomerObject()
 		{
 			Name = nameof(Customer);
-			Description = "A customer in the collection";
+			Description = "A customer";
 
 			Field(m => m.Id).Description("Identifier of the customer");
 			Field(m => m.Firstname).Description("Firstname of the customer");
