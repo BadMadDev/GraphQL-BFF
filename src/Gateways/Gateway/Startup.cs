@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using GraphQL.Server.Ui.Altair;
 
 namespace Gateway
 {
@@ -31,6 +32,8 @@ namespace Gateway
 			}
 
 			app.UseRouting();
+
+			app.UseGraphQLAltair(new AltairOptions() { }, "/ui/altair");
 
 			app.UseEndpoints(e =>
 			{
