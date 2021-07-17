@@ -15,6 +15,7 @@ namespace Gateway
 
 		public static IHostBuilder CreateHostBuilder(IConfiguration configuration, string[] args) =>
 			Host.CreateDefaultBuilder(args)
+				.ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder.UseStartup<Startup>();
