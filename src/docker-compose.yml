@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  customers-api:
+    image: maddev77/graphqlbff.customers.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Customers.Service/Dockerfile
+
+  orders-api:
+    image: maddev77/graphqlbff.orders.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Orders.Service/Dockerfile
+
+  graphql-bff:
+    image: maddev77/graphqlbff.gateway:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Gateways/Gateway/Dockerfile
+

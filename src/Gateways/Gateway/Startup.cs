@@ -13,8 +13,8 @@ namespace Gateway
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddHttpClient("Customers", c => c.BaseAddress = new Uri("http://localhost:5010/graphql"));
-			services.AddHttpClient("Orders", c => c.BaseAddress = new Uri("http://localhost:5020/graphql"));
+			services.AddHttpClient("Customers", c => c.BaseAddress = new Uri("http://customers-api:5010/graphql"));
+			services.AddHttpClient("Orders", c => c.BaseAddress = new Uri("http://orders-api:5020/graphql"));
 
 			services.AddGraphQLServer()
 				.AddRemoteSchema("Customers", ignoreRootTypes: false)

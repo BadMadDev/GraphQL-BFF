@@ -41,7 +41,6 @@ namespace Customers.Service
 			services.AddGraphQL(
 					(options, provider) =>
 					{
-						
 						var graphQLOptions = Configuration.GetSection("GraphQL").Get<GraphQLOptions>();
 
 						options.ComplexityConfiguration = graphQLOptions.ComplexityConfiguration;
