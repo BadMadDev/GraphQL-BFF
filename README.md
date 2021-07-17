@@ -199,3 +199,20 @@ Result:
   }
 }
 ```
+## Getting Started
+
+Make sure you have [installed](https://docs.docker.com/docker-for-windows/install/) docker in your environment. After that, you can run the below commands from the **/src/** directory and get started immediately.
+
+```powershell
+docker-compose build
+docker-compose up
+```
+
+You should be able to browse different components of the application by using the below URLs :
+
+```
+Customers API: http://host.docker.internal:5010/ui/altair
+Orders API:  http://host.docker.internal:5020/ui/altair
+Backend For Frontend:  http://host.docker.internal:5000/ui/altair
+```
+

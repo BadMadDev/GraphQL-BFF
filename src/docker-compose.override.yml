@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  customers-api:
+    ports:
+      - "5010:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+
+  orders-api:
+    ports:
+      - "5020:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+
+  graphql-bff:
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:5000
+      - Urls__Customers=http://customers-api/graphql
+      - Urls__Orders=http://orders-api/graphql 
+    depends_on:
+      - customers-api
+      - orders-api
+
