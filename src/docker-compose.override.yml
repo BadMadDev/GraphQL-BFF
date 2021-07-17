@@ -21,6 +21,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:5000
+      - Urls__Customers=http://customers-api:5010/graphql
+      - Urls__Orders=http://orders-api:5020/graphql 
     depends_on:
       - customers-api
       - orders-api
