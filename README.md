@@ -223,6 +223,6 @@ Orders API:  http://host.docker.internal:5020/ui/altair
 Backend For Frontend:  http://host.docker.internal:5000/ui/altair
 ```
 
-### F5 Experience
+Refer to these Wiki pages to Get Started:
 
-[Use Visual Studio](https://github.com/BadMadDev/GraphQL-BFF/wiki/Windows-setup#build-and-run-the-application-with-f5-or-ctrlf5)
+[Visual Studio (F5 experience)](https://github.com/BadMadDev/GraphQL-BFF/wiki/Windows-setup#build-and-run-the-application-with-f5-or-ctrlf5)
