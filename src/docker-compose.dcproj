@@ -8,8 +8,8 @@
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
   </PropertyGroup>
   <PropertyGroup>
-    <DockerServiceName>desktopschedulingapigw</DockerServiceName>
-    <DockerServiceUrl>http://localhost:15200</DockerServiceUrl>
+    <DockerServiceName>graphql-bff</DockerServiceName>
+    <DockerServiceUrl>http://localhost:5000/ui/altair</DockerServiceUrl>
   </PropertyGroup>
   <ItemGroup>
     <None Include=".dockerignore" />
