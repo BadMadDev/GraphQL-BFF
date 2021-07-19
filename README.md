@@ -1,6 +1,13 @@
 # GraphQL-BFF
 This is a training repository to get familiar with GraphQL and check the usefulness of using GraphQL as a BFF (Backend-For-Frontend)
 
+# Build Status (GitHub Actions)
+|Image|Status
+|-----|------|
+|Customers API|[![customers-api](https://github.com/BadMadDev/GraphQL-BFF/actions/workflows/customers-api.yml/badge.svg)](https://github.com/BadMadDev/GraphQL-BFF/actions/workflows/customers-api.yml)|
+|Orders API|[![orders-api](https://github.com/BadMadDev/GraphQL-BFF/actions/workflows/orders-api.yml/badge.svg)](https://github.com/BadMadDev/GraphQL-BFF/actions/workflows/orders-api.yml)|
+|Gateway (BFF)|[![gateway](https://github.com/BadMadDev/GraphQL-BFF/actions/workflows/gateway.yml/badge.svg)](https://github.com/BadMadDev/GraphQL-BFF/actions/workflows/gateway.yml)|
+
 # Fist Usage 
 
 ### Customer Service 
