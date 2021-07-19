@@ -1,4 +1,4 @@
-name: basket-api
+name: customers-api
 
 on:
   workflow_dispatch:
