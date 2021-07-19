@@ -17,7 +17,7 @@ on:
     - .github/workflows/orders-api.yml
 
 env:
-  SERVICE: customers-api
+  SERVICE: orders-api
   IMAGE: graphqlbff.orders.api
   DOTNET_VERSION: 5.0.x
 
